@@ -10,6 +10,9 @@ with open('pw.txt', 'r') as f:
 with open('user_id.txt', 'r') as f:
     user_id = f.read()
 
+with open('subreddit.txt', 'r') as f:
+    subreddit = f.read()    
+
 data = {
     'grant_type': 'password',
     'username': user_id,
@@ -25,4 +28,5 @@ TOKEN = res.json()
 
 header = {**headers, **{'Authorization': f'bearer {TOKEN}'}}
 
-res = requests.get('https://oauth.reddit.com/r/MobileWallpaper/hot', headers=headers)
+url = f'https://oauth.reddit.com/r/{subreddit}/hot'
+res = requests.get(url, headers=header)
